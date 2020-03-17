@@ -1,7 +1,6 @@
 
 <!doctype html>
 <html lang="en">
-
   <head>
     {% load staticfiles %}
     <meta charset="utf-8">
@@ -9,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Svante Pahlman</title>
+    <title>Svante's blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
@@ -57,46 +56,31 @@
           <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link" href="https://www.linkedin.com/in/svante-pahlman-27b19172/">LinkedIn</a>
             <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-            <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+            <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
           </div>
         </div>
       </nav>
     </header>
 
 <main role="main">
+  <div class="container">
+  <h1 class="text-center pt-3">Welcome to Svante's Blog</h1>
+  <br/>
+  <br/>
+  <h2>Latest posts</<h2>
+  <hr>
+  <!-- This is the loop of blog posts found in the database -->
+          {% for post in posts.all %}
+          <a href="{% url 'detail' post.id %}"><h3>{{post.title}}</h3></a>
+          <p>{{post.pub_date_pretty}}</p>
+              <img class="img-fluid" src="{{ post.image.url }}" height=200 width=200 />
+              <br />
+              <p>{{ post.summary }}</p>
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Hi, I'm Svante</h1>
-      <p class="lead text-muted">My name is Svante Pahlman. Welcome to my homepage. Here you will find bits my working experience, my resume and some thoughts of different phenomenas presented in the form of a blog.</p>
-      <p>
-        <a href="mailto:svante.pahlman@live.com" class="btn btn-primary my-2">Mail me!</a>
-      </p>
-      <img src="{% static 'svante.jpg' %}" height="300" />
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-
-<!-- This is the loop of jobs found in the database -->
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}" />
-            <div class="card-body">
-              <p class="card-text"> {{job.summary}} </p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-
-
-      </div>
-    </div>
+          <hr>
+          {% endfor %}
   </div>
+
 
 </main>
 
