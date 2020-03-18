@@ -71,7 +71,7 @@
   <hr>
   <!-- This is the loop of blog posts found in the database -->
           {% for post in posts.all %}
-          <a href="{% url 'detail' post.id %}"><h3>{{post.title}}</h3></a>
+          <h3><a href="{% url 'detail' post.id %}">{{post.title}}</a></h3>
           <p>{{post.pub_date_pretty}}</p>
               <img class="img-fluid" src="{{ post.image.url }}" height=200 width=200 />
               <br />
